@@ -1,0 +1,28 @@
+/* Footer */
+.footer {
+  background: var(--color-charcoal-900);
+  color: var(--color-surface);
+  padding: var(--spacing-2xl) 0;
+  text-align: center;
+  margin-top: auto;
+}
+
+.footer p {
+  margin-bottom: var(--spacing-sm);
+}
+
+.footer-link {
+  color: var(--color-moss-400);
+  text-decoration: underline;
+  transition: color var(--transition-base);
+}
+
+.footer-link:hover {
+  color: var(--color-moss-500);
+}
+
+.footer-secondary {
+  font-size: var(--font-size-sm);
+  color: var(--color-clay-400);
+  margin: 0;
+}

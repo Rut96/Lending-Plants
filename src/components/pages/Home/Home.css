@@ -1,0 +1,7 @@
+.home-page {
+  min-height: 100vh;
+}
+
+.home-page > section:not(:last-child) {
+  margin-bottom: var(--spacing-4xl);
+}

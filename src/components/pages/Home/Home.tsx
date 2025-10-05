@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import HeroSection from '../../sections/HeroSection/HeroSection';
 import BenefitsSection from '../../sections/BenefitsSection/BenefitsSection';
+import PlantCareSection from '../../sections/PlantCareSection/PlantCareSection';
 import FAQSection from '../../sections/FAQSection/FAQSection';
 import './Home.css';
 
@@ -15,6 +16,7 @@ export default function Home() {
     <div className="home-page">
       <HeroSection onCtaClick={handleFindPlants} />
       <BenefitsSection />
+      <PlantCareSection />
       <FAQSection />
     </div>
   );

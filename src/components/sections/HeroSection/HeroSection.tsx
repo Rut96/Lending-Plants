@@ -1,4 +1,3 @@
-import Plant3D from './Plant3D';
 import './HeroSection.css';
 
 interface HeroSectionProps {
@@ -8,6 +7,7 @@ interface HeroSectionProps {
 export default function HeroSection({ onCtaClick }: HeroSectionProps) {
   return (
     <section className="hero-section">
+      <div className="hero-background-image" />
       <div className="container hero-container">
         <div className="hero-content fade-in">
           <h1>
@@ -20,9 +20,6 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
           <button className="cta-button" onClick={onCtaClick}>
             Find Your Plant
           </button>
-        </div>
-        <div className="hero-image-wrapper fade-in">
-          <Plant3D />
         </div>
       </div>
     </section>

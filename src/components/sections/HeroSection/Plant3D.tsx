@@ -1,9 +1,39 @@
-import { useRef } from 'react';
+import { useRef, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera, Html } from '@react-three/drei';
 import * as THREE from 'three';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { useLoader } from '@react-three/fiber';
+
+function Loader() {
+  return (
+    <Html center>
+      <div style={{
+        color: '#4a7c59',
+        fontSize: '18px',
+        fontWeight: '600',
+        textAlign: 'center'
+      }}>
+        Loading plant...
+        <div style={{
+          width: '40px',
+          height: '40px',
+          border: '4px solid #e8f5e9',
+          borderTop: '4px solid #4a7c59',
+          borderRadius: '50%',
+          margin: '10px auto',
+          animation: 'spin 1s linear infinite'
+        }} />
+        <style>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
+      </div>
+    </Html>
+  );
+}
 
 function PlantModel() {
   const meshRef = useRef<THREE.Group>(null);
@@ -85,12 +115,14 @@ export default function Plant3D() {
         <directionalLight position={[-10, -10, -5]} intensity={0.3} />
         <pointLight position={[0, 5, 0]} intensity={0.5} />
 
-        {/* 3D Model */}
-        <PlantModel />
+        {/* 3D Model with loading fallback */}
+        <Suspense fallback={<Loader />}>
+          <PlantModel />
+        </Suspense>
 
         {/* Controls for user interaction */}
         <OrbitControls
-          enableZoom={true}
+          enableZoom={false}
           enablePan={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 4}

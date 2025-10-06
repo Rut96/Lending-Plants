@@ -34,7 +34,7 @@ export default function FAQSection() {
 
   return (
     <section className="faq-section">
-      <div className="container fade-in">
+      <div className="container">
         <h2>Common Questions</h2>
         <div className="faq-layout">
           <div className="faq-slider">

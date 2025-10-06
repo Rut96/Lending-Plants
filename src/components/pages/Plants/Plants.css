@@ -1,6 +1,7 @@
 .plants-page {
   min-height: 100vh;
-  padding-top: var(--spacing-2xl);
+  /* padding-top: var(--spacing-2xl); */
+  padding-top: 6rem
 }
 
 .plant-cards-section {

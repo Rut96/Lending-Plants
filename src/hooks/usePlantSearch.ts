@@ -38,34 +38,27 @@ export function usePlantSearch(): UseePlantSearchResult {
   // Cache for plant details
   const detailsCache = useMemo(() => new Map<number, PlantDetailsResponse>(), []);
 
-  const filterByExperience = useCallback(
-    (plants: PlantSpecies[], level: ExperienceLevel): PlantSpecies[] => {
-      // For now, return all plants regardless of experience level
-      // The API filters by sunlight and watering are enough
-      return plants;
-
-      /* Original filtering logic - too restrictive for demo
-      if (level === 'beginner') {
-        return plants.filter((plant) => {
-          const hasEasyWatering = ['minimum', 'average', 'none'].includes(
-            plant.watering?.toLowerCase() || ''
-          );
-          const hasEasySunlight = !plant.sunlight?.some((s) =>
-            s.toLowerCase().includes('full_sun')
-          );
-          return hasEasyWatering || hasEasySunlight;
-        });
-      } else if (level === 'expert') {
-        return plants.filter((plant) => {
-          const needsFrequentWatering = plant.watering?.toLowerCase() === 'frequent';
-          const needsFullSun = plant.sunlight?.some((s) =>
-            s.toLowerCase().includes('full_sun')
-          );
-          return needsFrequentWatering || needsFullSun;
-        });
+  const applyExperienceFilter = useCallback(
+    (plants: PlantSpecies[], experience?: ExperienceLevel): PlantSpecies[] => {
+      // If no experience filter, return all plants
+      if (!experience) {
+        return plants;
       }
-      return plants;
-      */
+
+      // Apply experience-based filtering
+      return plants.filter((plant) => {
+        const watering = plant.watering?.toLowerCase() || '';
+
+        if (experience === 'beginner') {
+          // Beginners: easy watering (not frequent)
+          return ['minimum', 'average', 'none'].includes(watering);
+        } else if (experience === 'intermediate') {
+          // Intermediate: average to frequent
+          return ['average', 'frequent'].includes(watering);
+        }
+        // Expert: show all plants
+        return true;
+      });
     },
     []
   );
@@ -76,11 +69,12 @@ export function usePlantSearch(): UseePlantSearchResult {
       setError(null);
 
       try {
-        // Call API service
-        const results = await plantApiService.searchPlants();
+        // Call API service with light and time filters
+        // (API handles sunlight and watering parameters)
+        const results = await plantApiService.searchPlants(filters);
 
-        // Apply experience level filter client-side
-        const filteredPlants = filterByExperience(results, filters.experience);
+        // Apply client-side experience level filtering
+        const filteredPlants = applyExperienceFilter(results, filters.experience);
 
         setPlants(filteredPlants);
       } catch (err) {
@@ -91,7 +85,7 @@ export function usePlantSearch(): UseePlantSearchResult {
         setLoading(false);
       }
     },
-    [filterByExperience]
+    [applyExperienceFilter]
   );
 
   const getPlantDetails = useCallback(

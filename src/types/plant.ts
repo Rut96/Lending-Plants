@@ -139,10 +139,81 @@ export type TimeCommitment = 'low' | 'medium' | 'high';
 export type ExperienceLevel = 'beginner' | 'intermediate' | 'expert';
 
 export interface PlantFilters {
-  light: LightLevel;
-  time: TimeCommitment;
-  experience: ExperienceLevel;
+  light?: LightLevel;
+  time?: TimeCommitment;
+  experience?: ExperienceLevel;
 }
+
+// Filter display options
+export interface FilterDisplayOption {
+  value: string;
+  label: string;
+  description: string;
+  emoji: string;
+}
+
+export const LIGHT_OPTIONS: FilterDisplayOption[] = [
+  {
+    value: 'low',
+    label: 'Dark Room',
+    description: 'Basement, bathroom, interior',
+    emoji: '🏠',
+  },
+  {
+    value: 'medium',
+    label: 'Bright Room',
+    description: 'Near windows, living room',
+    emoji: '🪟',
+  },
+  {
+    value: 'high',
+    label: 'Sunny Spot',
+    description: 'South-facing, balcony',
+    emoji: '☀️',
+  },
+];
+
+export const TIME_OPTIONS: FilterDisplayOption[] = [
+  {
+    value: 'low',
+    label: 'Low Maintenance',
+    description: 'Water rarely, easy care',
+    emoji: '🌵',
+  },
+  {
+    value: 'medium',
+    label: 'Moderate Care',
+    description: 'Water weekly, some attention',
+    emoji: '🪴',
+  },
+  {
+    value: 'high',
+    label: 'High Attention',
+    description: 'Frequent watering, daily care',
+    emoji: '💧',
+  },
+];
+
+export const EXPERIENCE_OPTIONS: FilterDisplayOption[] = [
+  {
+    value: 'beginner',
+    label: 'Beginner',
+    description: 'First-time plant parent',
+    emoji: '🌱',
+  },
+  {
+    value: 'intermediate',
+    label: 'Intermediate',
+    description: 'Some experience with plants',
+    emoji: '🌿',
+  },
+  {
+    value: 'expert',
+    label: 'Expert',
+    description: 'Experienced plant keeper',
+    emoji: '🌳',
+  },
+];
 
 // Mapping types
 export type SunlightValue = 'full_shade' | 'part_shade' | 'sun-part_shade' | 'full_sun';

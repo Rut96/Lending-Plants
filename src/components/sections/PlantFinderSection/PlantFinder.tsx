@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { usePlantSearch, useDebounce } from '../../../hooks/usePlantSearch';
 import type { PlantFilters, LightLevel, TimeCommitment, ExperienceLevel } from '../../../types/plant';
-import SliderControl from '../../shared/SliderControl';
+import { LIGHT_OPTIONS as lightOptions, TIME_OPTIONS as timeOptions, EXPERIENCE_OPTIONS as experienceOptions } from '../../../types/plant';
+import PlantFilterControl from '../../shared/PlantFilterControl';
 import PlantCard from '../../shared/PlantCard';
 import CareModal from '../../shared/CareModal';
 import './PlantFinder.css';
@@ -10,21 +11,32 @@ export default function PlantFinder() {
   const { plants, loading, error, search, getPlantDetails } = usePlantSearch();
   const [selectedPlantId, setSelectedPlantId] = useState<number | null>(null);
 
-  const [filters, setFilters] = useState<PlantFilters>({
-    light: 'medium' as LightLevel,
-    time: 'medium' as TimeCommitment,
-    experience: 'beginner' as ExperienceLevel,
-  });
+  // Initially no filters - show all plants
+  const [filters, setFilters] = useState<PlantFilters>({});
 
   // Debounce filter changes to reduce API calls
   const debouncedFilters = useDebounce(filters, 300);
 
+  // Load plants on initial mount and when filters change
   useEffect(() => {
     search(debouncedFilters);
   }, [debouncedFilters, search]);
 
   const handleFilterChange = (key: keyof PlantFilters, value: string) => {
-    setFilters((prev) => ({ ...prev, [key]: value }));
+    setFilters((prev) => {
+      // If value is empty, remove the filter
+      if (!value) {
+        const newFilters = { ...prev };
+        delete newFilters[key];
+        return newFilters;
+      }
+
+      // Otherwise, set the filter
+      return {
+        ...prev,
+        [key]: value as LightLevel | TimeCommitment | ExperienceLevel
+      };
+    });
   };
 
   return (
@@ -36,26 +48,26 @@ export default function PlantFinder() {
         </div>
 
         <div className="plant-finder-controls">
-          <SliderControl
-            label="Light Conditions"
-            options={['Low', 'Medium', 'High']}
-            value={filters.light}
+          <PlantFilterControl
+            label="Where will you keep this plant?"
+            options={lightOptions}
+            value={filters.light || ''}
             onChange={(value) => handleFilterChange('light', value as LightLevel)}
-            ariaLabel="Select light level preference"
+            ariaLabel="Select light conditions"
           />
 
-          <SliderControl
-            label="Time Commitment"
-            options={['Low', 'Medium', 'High']}
-            value={filters.time}
+          <PlantFilterControl
+            label="How much time can you dedicate?"
+            options={timeOptions}
+            value={filters.time || ''}
             onChange={(value) => handleFilterChange('time', value as TimeCommitment)}
             ariaLabel="Select time commitment level"
           />
 
-          <SliderControl
-            label="Experience Level"
-            options={['Beginner', 'Intermediate', 'Expert']}
-            value={filters.experience}
+          <PlantFilterControl
+            label="What's your experience level?"
+            options={experienceOptions}
+            value={filters.experience || ''}
             onChange={(value) => handleFilterChange('experience', value as ExperienceLevel)}
             ariaLabel="Select your experience level"
           />

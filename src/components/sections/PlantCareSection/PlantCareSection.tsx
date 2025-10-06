@@ -4,7 +4,7 @@ import './PlantCareSection.css';
 export default function PlantCareSection() {
   return (
     <section className="plant-care-section">
-      <div className="container">
+      <div className="container fade-in">
         <div className="care-header">
           <h2>Steps To Take Care Of Your <span className="highlight">Plants</span></h2>
           <p className="care-subtitle">

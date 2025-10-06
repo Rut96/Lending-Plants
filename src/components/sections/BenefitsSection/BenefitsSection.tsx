@@ -1,10 +1,13 @@
 import { Sun, FileText, PawPrint, Sprout } from 'lucide-react';
 import './BenefitsSection.css';
+import plant1 from '../../../assets/images/plant1.png';
+import plant2 from '../../../assets/images/plant2.png';
+import plant3 from '../../../assets/images/plant3.png';
 
 export default function BenefitsSection() {
   return (
-    <section className="benefits-section fade-in">
-      <div className="container">
+    <section className="benefits-section">
+      <div className="container fade-in">
         <div className="benefits-grid">
           <div className="benefit-card">
             <div className="benefit-icon">
@@ -14,12 +17,20 @@ export default function BenefitsSection() {
             <p>Filter plants based on your home's light and your available time</p>
           </div>
 
+          <div className="benefit-separator">
+            <img src={plant1} alt="" className="separator-plant" />
+          </div>
+
           <div className="benefit-card">
             <div className="benefit-icon">
               <FileText size={32} strokeWidth={2} />
             </div>
             <h3>Care Cards</h3>
-            <p>Get detailed care instructions tailored to each plant species</p>
+            <p>Detailed care instructions for each plant species</p>
+          </div>
+
+          <div className="benefit-separator">
+            <img src={plant2} alt="" className="separator-plant" />
           </div>
 
           <div className="benefit-card">
@@ -28,6 +39,10 @@ export default function BenefitsSection() {
             </div>
             <h3>Pet Awareness</h3>
             <p>See which plants are safe for your furry friends</p>
+          </div>
+
+          <div className="benefit-separator">
+            <img src={plant3} alt="" className="separator-plant" />
           </div>
 
           <div className="benefit-card">

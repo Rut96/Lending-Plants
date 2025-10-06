@@ -33,8 +33,8 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="faq-section fade-in">
-      <div className="container">
+    <section className="faq-section">
+      <div className="container fade-in">
         <h2>Common Questions</h2>
         <div className="faq-layout">
           <div className="faq-slider">

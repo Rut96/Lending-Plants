@@ -9,7 +9,7 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
     <section className="hero-section">
       <div className="hero-background-image" />
       <div className="container hero-container">
-        <div className="hero-content fade-in">
+        <div className="hero-content">
           <h1>
             <span className="hero-title-line1">Bring Nature</span>
             <span className="hero-title-line2">Into Your Home</span>

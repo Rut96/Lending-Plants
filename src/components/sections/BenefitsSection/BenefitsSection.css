@@ -79,13 +79,19 @@
 
 @media (max-width: 1024px) {
   .benefits-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: var(--spacing-xl);
   }
 
   .benefit-separator {
-    width: 80px;
-    margin: 0 auto;
-    transform: rotate(90deg);
+    display: none;
+  }
+
+  .benefit-card h3 {
+    white-space: normal;
+  }
+
+  .benefit-card p {
+    max-width: 100%;
   }
 }

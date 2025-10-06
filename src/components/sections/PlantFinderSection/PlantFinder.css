@@ -2,7 +2,7 @@
   /* padding: var(--spacing-3xl) 0 var(--spacing-4xl); */
   /* background: var(--color-cream-100); */
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .plant-finder-section::before {
@@ -39,9 +39,15 @@
 
 .plant-finder-header h2 {
   margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-4xl);
+  font-family: var(--font-display);
+  font-size: var(--font-size-5xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-charcoal-900);
+  background: linear-gradient(135deg, var(--color-leaf-700) 0%, var(--color-leaf-600) 50%, var(--color-moss-500) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
 .plant-finder-header p {
@@ -59,16 +65,18 @@
 
 .plant-finder-separator {
   width: 200px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
   align-self: stretch;
-  overflow: visible;
+  position: relative;
 }
 
 .plant-finder-separator img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: auto;
-    height: 90%;
+    height: 620px;
+    max-height: none;
     object-fit: cover;
 }
 

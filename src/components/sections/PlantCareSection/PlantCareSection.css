@@ -1,6 +1,6 @@
 .plant-care-section {
   padding: 6rem 2rem;
-  background: var(--color-surface, #ffffff);
+  background:#F8F6EF;
   position: relative;
   z-index: 1;
 }

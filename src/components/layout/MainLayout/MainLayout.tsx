@@ -8,6 +8,9 @@ export default function MainLayout() {
   const location = useLocation();
 
   useEffect(() => {
+    // Scroll to top without animation when page changes
+    window.scrollTo(0, 0);
+
     // Add scroll animations - re-run when location changes
     const observerOptions = {
       threshold: 0.15,

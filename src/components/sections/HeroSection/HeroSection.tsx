@@ -11,14 +11,14 @@ export default function HeroSection({ onCtaClick }: HeroSectionProps) {
       <div className="container hero-container">
         <div className="hero-content fade-in">
           <h1>
-            <span className="hero-title-line1">Health Plants</span>
-            <span className="hero-title-line2">Happy Homes</span>
+            <span className="hero-title-line1">Bring Nature</span>
+            <span className="hero-title-line2">Into Your Home</span>
           </h1>
           <p className="hero-description">
-            Discover the perfect indoor plants for your space, lifestyle, and experience level
+            Find the perfect plant companion for your space and lifestyle
           </p>
           <button className="cta-button" onClick={onCtaClick}>
-            Find Your Plant
+            Discover Plants
           </button>
         </div>
       </div>

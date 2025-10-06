@@ -58,16 +58,18 @@
 }
 
 .plant-finder-separator {
-  width: 120px;
+  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: stretch;
+  overflow: visible;
 }
 
 .plant-finder-separator img {
-    /* width: 100%; */
-    height: 80%;
-    object-fit: cover;
+    width: auto;
+    height: 120%;
+    object-fit: contain;
 }
 
 /* Responsive */

@@ -8,7 +8,7 @@
 }
 
 .hero-background-image {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -18,8 +18,17 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.4;
   z-index: 0;
+}
+
+.hero-background-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .hero-container {
@@ -47,21 +56,24 @@
 }
 
 .hero-title-line1 {
-  color: var(--color-charcoal-900);
+  color: #ffffff;
   font-weight: var(--font-weight-semibold);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero-title-line2 {
-  color: var(--color-leaf-600);
+  color: #9FD49F;
   font-weight: var(--font-weight-bold);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .hero-description {
   font-size: var(--font-size-lg);
-  color: var(--color-text-secondary);
+  color: #f0f0f0;
   margin-bottom: var(--spacing-2xl);
   line-height: var(--line-height-relaxed);
   max-width: 480px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
 .cta-button {

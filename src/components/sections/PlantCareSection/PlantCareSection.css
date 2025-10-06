@@ -1,6 +1,8 @@
 .plant-care-section {
   padding: 6rem 2rem;
-  /* background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); */
+  background: var(--color-surface, #ffffff);
+  position: relative;
+  z-index: 1;
 }
 
 .care-header {

@@ -1,5 +1,12 @@
 // Perenual API Type Definitions
 
+import darkRoomImg from '../assets/images/dark-room.jpg';
+import brightRoomImg from '../assets/images/bright-room.jpg';
+import balconyImg from '../assets/images/balcony.jpg';
+import waterRareImg from '../assets/images/water-rare.jpg';
+import waterWeeklyImg from '../assets/images/water-weekly.jpg';
+import waterHighImg from '../assets/images/water-high.jpg';
+
 export interface PlantImage {
   license: number;
   license_name: string;
@@ -150,6 +157,7 @@ export interface FilterDisplayOption {
   label: string;
   description: string;
   emoji: string;
+  image: string;
 }
 
 export const LIGHT_OPTIONS: FilterDisplayOption[] = [
@@ -158,18 +166,21 @@ export const LIGHT_OPTIONS: FilterDisplayOption[] = [
     label: 'Dark Room',
     description: 'Basement, bathroom, interior',
     emoji: '🏠',
+    image: darkRoomImg,
   },
   {
     value: 'medium',
     label: 'Bright Room',
     description: 'Near windows, living room',
     emoji: '🪟',
+    image: brightRoomImg,
   },
   {
     value: 'high',
     label: 'Sunny Spot',
     description: 'South-facing, balcony',
     emoji: '☀️',
+    image: balconyImg,
   },
 ];
 
@@ -179,18 +190,21 @@ export const TIME_OPTIONS: FilterDisplayOption[] = [
     label: 'Low Maintenance',
     description: 'Water rarely, easy care',
     emoji: '🌵',
+    image: waterRareImg,
   },
   {
     value: 'medium',
     label: 'Moderate Care',
     description: 'Water weekly, some attention',
     emoji: '🪴',
+    image: waterWeeklyImg,
   },
   {
     value: 'high',
     label: 'High Attention',
     description: 'Frequent watering, daily care',
     emoji: '💧',
+    image: waterHighImg,
   },
 ];
 

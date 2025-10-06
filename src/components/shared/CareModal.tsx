@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import type { PlantDetailsResponse } from '../../types/plant';
+import type { UnifiedPlant } from '../../types/trefle';
 import './CareModal.css';
 
 interface CareModalProps {
-  plantId: number | null;
+  plantId: string | null;
   onClose: () => void;
-  getPlantDetails: (id: number) => Promise<PlantDetailsResponse | null>;
+  getPlantDetails: (id: string) => Promise<UnifiedPlant | null>;
 }
 
 export default function CareModal({ plantId, onClose, getPlantDetails }: CareModalProps) {
-  const [plant, setPlant] = useState<PlantDetailsResponse | null>(null);
+  const [plant, setPlant] = useState<UnifiedPlant | null>(null);
   const [loading, setLoading] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -50,17 +50,30 @@ export default function CareModal({ plantId, onClose, getPlantDetails }: CareMod
   const handleCopyPlan = async () => {
     if (!plant) return;
 
+    const scientificName = Array.isArray(plant.scientificName)
+      ? plant.scientificName[0]
+      : plant.scientificName;
+
+    const lightInfo = plant.sunlight?.join(', ') ||
+      (plant.lightLevel ? `Light level: ${plant.lightLevel}/10` : 'Moderate indirect light');
+
+    const waterInfo = plant.watering || 'Moderate weekly watering; let soil dry on top 2-3 cm';
+
+    const toxicityInfo = plant.toxicity ||
+      (plant.edible ? '🍽️ Edible plant' : 'Check with vet before bringing home');
+
     const careText = `
-${plant.common_name} Care Plan
+${plant.commonName} Care Plan
+${scientificName ? `Scientific name: ${scientificName}` : ''}
 
-🌞 Light: ${plant.sunlight?.join(', ') || 'Check moderate indirect light'}
-💧 Water: ${plant.watering_general_benchmark?.value && plant.watering_general_benchmark?.unit
-  ? `Every ${plant.watering_general_benchmark.value} ${plant.watering_general_benchmark.unit}`
-  : 'Check moderate weekly watering; let soil dry on top 2-3 cm'}
-🌱 Repot: ${plant.pruning_month?.length ? `Best in ${plant.pruning_month.join(', ')}` : 'Annually in spring'}
-🐾 Pet Safety: ${plant.poisonous_to_pets === 1 ? '⚠️ Toxic to pets' : plant.poisonous_to_pets === 0 ? '✅ Pet-safe' : 'Check with vet before bringing home'}
+🌞 Light: ${lightInfo}
+💧 Water: ${waterInfo}
+🌱 Growth: ${plant.growthRate || 'Moderate'}
+${plant.edible ? `🍽️ Edible: Yes${plant.ediblePart?.length ? ` (${plant.ediblePart.join(', ')})` : ''}` : ''}
+🐾 Safety: ${toxicityInfo}
+${plant.family ? `🌿 Family: ${plant.family}` : ''}
 
-From Pocket Garden (powered by Perenual API)
+From Pocket Garden (powered by Trefle & Perenual APIs)
     `.trim();
 
     try {
@@ -100,10 +113,40 @@ From Pocket Garden (powered by Perenual API)
           </div>
         ) : plant ? (
           <>
+            {/* Display Trefle images if available */}
+            {plant.images && (plant.images.flower?.[0] || plant.images.leaf?.[0] || plant.images.habit?.[0]) && (
+              <div className="modal-images">
+                {plant.images.flower?.[0] && (
+                  <img
+                    src={plant.images.flower[0].image_url}
+                    alt={`${plant.commonName} flower`}
+                    className="modal-plant-image"
+                  />
+                )}
+                {plant.images.leaf?.[0] && (
+                  <img
+                    src={plant.images.leaf[0].image_url}
+                    alt={`${plant.commonName} leaf`}
+                    className="modal-plant-image"
+                  />
+                )}
+                {plant.images.habit?.[0] && (
+                  <img
+                    src={plant.images.habit[0].image_url}
+                    alt={`${plant.commonName} habit`}
+                    className="modal-plant-image"
+                  />
+                )}
+              </div>
+            )}
+
             <div className="modal-header">
-              <h2 id="modal-title" className="modal-title">{plant.common_name}</h2>
-              {plant.scientific_name?.[0] && (
-                <p className="modal-subtitle">{plant.scientific_name[0]}</p>
+              <h2 id="modal-title" className="modal-title">{plant.commonName}</h2>
+              {plant.scientificName && (
+                <p className="modal-subtitle">
+                  {Array.isArray(plant.scientificName) ? plant.scientificName[0] : plant.scientificName}
+                  {plant.family && ` • ${plant.family}`}
+                </p>
               )}
             </div>
 
@@ -118,7 +161,8 @@ From Pocket Garden (powered by Perenual API)
                 <div>
                   <h3 className="care-label">Light</h3>
                   <p className="care-value">
-                    {plant.sunlight?.join(', ') || 'Check moderate indirect light'}
+                    {plant.sunlight?.join(', ') ||
+                      (plant.lightLevel ? `Level ${plant.lightLevel}/10` : 'Moderate indirect light')}
                   </p>
                 </div>
               </div>
@@ -132,9 +176,7 @@ From Pocket Garden (powered by Perenual API)
                 <div>
                   <h3 className="care-label">Watering</h3>
                   <p className="care-value">
-                    {plant.watering_general_benchmark?.value && plant.watering_general_benchmark?.unit
-                      ? `Every ${plant.watering_general_benchmark.value} ${plant.watering_general_benchmark.unit}`
-                      : 'Check moderate weekly watering; let soil dry on top 2-3 cm'}
+                    {plant.watering || 'Moderate weekly watering; let soil dry on top 2-3 cm'}
                   </p>
                 </div>
               </div>
@@ -146,11 +188,10 @@ From Pocket Garden (powered by Perenual API)
                   </svg>
                 </div>
                 <div>
-                  <h3 className="care-label">Repotting</h3>
+                  <h3 className="care-label">Growth</h3>
                   <p className="care-value">
-                    {plant.pruning_month?.length
-                      ? `Best in ${plant.pruning_month.join(', ')}`
-                      : 'Annually in spring'}
+                    {plant.growthRate || 'Moderate rate'}
+                    {plant.averageHeight?.cm && ` • ${plant.averageHeight.cm}cm avg height`}
                   </p>
                 </div>
               </div>
@@ -166,13 +207,12 @@ From Pocket Garden (powered by Perenual API)
                   </svg>
                 </div>
                 <div>
-                  <h3 className="care-label">Pet Safety</h3>
+                  <h3 className="care-label">Safety</h3>
                   <p className="care-value">
-                    {plant.poisonous_to_pets === 1
-                      ? '⚠️ Toxic to pets'
-                      : plant.poisonous_to_pets === 0
-                      ? '✅ Pet-safe'
-                      : 'Check with vet before bringing home'}
+                    {plant.toxicity ||
+                      (plant.edible
+                        ? `✅ Edible${plant.ediblePart?.length ? ` (${plant.ediblePart.join(', ')})` : ''}`
+                        : 'Check with vet before bringing home')}
                   </p>
                 </div>
               </div>

@@ -55,13 +55,53 @@ class PlantApiService {
   }
 
   public async searchPlants(filters?: PlantFilters): Promise<PlantSpecies[]> {
-    const params = this.mapFiltersToApiParams(filters);
+    try {
+      const params = this.mapFiltersToApiParams(filters);
 
-    const response = await axios.get<ApiResponse<PlantSpecies>>(`${API_BASE_URL}/species-list`, {
-      params,
-    });
+      console.log('Perenual API request params:', params);
 
-    return response.data.data || [];
+      const response = await axios.get<ApiResponse<PlantSpecies>>(`${API_BASE_URL}/species-list`, {
+        params,
+      });
+
+      console.log('Perenual API response:', {
+        total: response.data.total,
+        count: response.data.data?.length,
+        hasData: !!response.data.data,
+      });
+
+      return response.data.data || [];
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Perenual API error:', {
+          status: error.response?.status,
+          message: error.message,
+          data: error.response?.data,
+        });
+      } else {
+        console.error('Perenual API error:', error);
+      }
+
+      // If filters are causing issues, try without filters
+      if (filters && Object.keys(filters).length > 0) {
+        console.log('Retrying without filters...');
+        try {
+          const response = await axios.get<ApiResponse<PlantSpecies>>(`${API_BASE_URL}/species-list`, {
+            params: {
+              key: this.apiKey,
+              indoor: 1,
+              page: 1,
+            },
+          });
+          return response.data.data || [];
+        } catch (retryError) {
+          console.error('Retry also failed:', retryError);
+          return [];
+        }
+      }
+
+      return [];
+    }
   }
 
   public async getPlantDetails(id: number): Promise<PlantDetailsResponse> {

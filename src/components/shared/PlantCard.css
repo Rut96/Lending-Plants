@@ -1,6 +1,6 @@
 .plant-card {
   background: var(--color-surface);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   overflow: hidden;
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
@@ -11,8 +11,8 @@
 }
 
 .plant-card:hover {
-  transform: translateY(-4px) perspective(1000px) rotateX(2deg);
-  box-shadow: var(--shadow-xl);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-2xl);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -24,9 +24,9 @@
 .plant-card-image-wrapper {
   position: relative;
   width: 100%;
-  height: 240px;
+  height: 320px;
   overflow: hidden;
-  background: var(--color-cream-100);
+  background: linear-gradient(135deg, var(--color-cream-100) 0%, var(--color-cream-200) 100%);
 }
 
 .plant-card-image-skeleton {
@@ -37,9 +37,11 @@
 .plant-card-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   opacity: 0;
   transition: opacity var(--transition-base);
+  padding: var(--spacing-md);
 }
 
 .plant-card-image.loaded {
@@ -57,7 +59,7 @@
 }
 
 .plant-card-content {
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
@@ -65,11 +67,19 @@
 }
 
 .plant-card-title {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
   color: var(--color-charcoal-900);
   margin: 0;
   line-height: var(--line-height-tight);
+}
+
+.plant-card-subtitle {
+  font-size: var(--font-size-sm);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  margin: 0;
+  margin-top: calc(var(--spacing-xs) * -1);
 }
 
 .plant-card-badges {
@@ -82,11 +92,12 @@
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-full);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   text-transform: capitalize;
+  white-space: nowrap;
 }
 
 .plant-badge svg {
@@ -103,24 +114,31 @@
   color: #2C7A7B;
 }
 
+.plant-badge-edible {
+  background: #F0FDF4;
+  color: #15803D;
+}
+
 .plant-card-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-xl);
   background: var(--color-accent);
   color: var(--color-surface);
-  border-radius: var(--radius-lg);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   transition: all var(--transition-base);
   margin-top: auto;
+  box-shadow: var(--shadow-sm);
 }
 
 .plant-card-button:hover {
   background: var(--color-accent-hover);
-  transform: translateX(2px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .plant-card-button svg {
@@ -142,9 +160,23 @@
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .plant-card-image-wrapper {
+    height: 280px;
+  }
+
+  .plant-card-content {
+    padding: var(--spacing-lg);
+  }
+
+  .plant-card-title {
+    font-size: var(--font-size-xl);
+  }
+}
+
 @media (max-width: 640px) {
   .plant-card-image-wrapper {
-    height: 200px;
+    height: 240px;
   }
 
   .plant-card-content {

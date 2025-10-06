@@ -1,0 +1,1368 @@
+{
+  "metadata": {
+    "title": "Pocket Garden – Starter Houseplants Dataset",
+    "version": "0.1.0",
+    "generated_at": "2025-10-06T12:48:15.603161Z",
+    "license": "CC-BY-4.0 (dataset structure & synthesized values). Replace image URLs with your own.",
+    "notes": [
+      "Offline-first; no external API calls required.",
+      "Values are reasonable indoor ranges; tune for your UX copy.",
+      "Replace example.com image URLs with your assets or fetched images with attribution."
+    ],
+    "schema": {
+      "id": "slug string",
+      "name": "display/common name",
+      "latin": "scientific name",
+      "aliases": "array of strings",
+      "categories": "array of strings (tags)",
+      "toxicity": {
+        "to_pets": "bool",
+        "to_humans": "bool"
+      },
+      "images": {
+        "primary": "url",
+        "gallery": "array of urls"
+      },
+      "care": {
+        "light": {
+          "level": "low|low-medium|medium|medium-high|high|low-high",
+          "lux_min": "int",
+          "lux_max": "int",
+          "notes": "string"
+        },
+        "watering": {
+          "level": "minimum|average|frequent",
+          "per_week_min": "float",
+          "per_week_max": "float",
+          "notes": "string"
+        },
+        "soil_moisture": {
+          "target_min": "percent",
+          "target_max": "percent"
+        },
+        "humidity": {
+          "target_min": "percent",
+          "target_max": "percent"
+        },
+        "temperature_c": {
+          "min": "int",
+          "max": "int"
+        },
+        "fertilizer": {
+          "frequency_per_month": "float",
+          "season": "string"
+        }
+      },
+      "difficulty": "1 (easy) .. 5 (hard)",
+      "sources": "array of strings",
+      "notes": "optional string"
+    }
+  },
+  "plants": [
+    {
+      "id": "monstera-deliciosa",
+      "name": "Monstera",
+      "latin": "Monstera deliciosa",
+      "aliases": [
+        "Swiss Cheese Plant",
+        "Monstera Deliciosa"
+      ],
+      "categories": [
+        "foliage",
+        "vining",
+        "tropical"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/monstera_primary.jpg",
+        "gallery": [
+          "https://example.com/images/monstera_leaf.jpg",
+          "https://example.com/images/monstera_room.jpg"
+        ]
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 2000,
+          "notes": "bright, indirect"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.7,
+          "notes": "let top 2–3 cm dry"
+        },
+        "soil_moisture": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "humidity": {
+          "target_min": 45,
+          "target_max": 70
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 30
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ],
+      "notes": "Provide support/moss pole for mature plants."
+    },
+    {
+      "id": "epipremnum-aureum",
+      "name": "Pothos",
+      "latin": "Epipremnum aureum",
+      "aliases": [
+        "Devil's Ivy",
+        "Golden Pothos"
+      ],
+      "categories": [
+        "vining",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/pothos_primary.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 100,
+          "lux_max": 1000,
+          "notes": "tolerates low light"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.2,
+          "per_week_max": 0.5,
+          "notes": "dry top 3–4 cm"
+        },
+        "soil_moisture": {
+          "target_min": 25,
+          "target_max": 45
+        },
+        "humidity": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 16,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ],
+      "notes": "Variegation may fade in very low light."
+    },
+    {
+      "id": "dracaena-trifasciata",
+      "name": "Snake Plant",
+      "latin": "Dracaena trifasciata",
+      "aliases": [
+        "Sansevieria",
+        "Mother-in-law's Tongue"
+      ],
+      "categories": [
+        "succulent-like",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/snake_plant.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-high",
+          "lux_min": 100,
+          "lux_max": 3000,
+          "notes": "very tolerant"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.1,
+          "per_week_max": 0.3,
+          "notes": "allow soil to dry"
+        },
+        "soil_moisture": {
+          "target_min": 10,
+          "target_max": 30
+        },
+        "humidity": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "temperature_c": {
+          "min": 15,
+          "max": 30
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.25,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "zamioculcas-zamiifolia",
+      "name": "ZZ Plant",
+      "latin": "Zamioculcas zamiifolia",
+      "aliases": [
+        "Zanzibar Gem"
+      ],
+      "categories": [
+        "beginner",
+        "tough"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/zz_plant.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 100,
+          "lux_max": 1500,
+          "notes": "avoid harsh sun"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.1,
+          "per_week_max": 0.3,
+          "notes": "drought tolerant"
+        },
+        "soil_moisture": {
+          "target_min": 15,
+          "target_max": 35
+        },
+        "humidity": {
+          "target_min": 30,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 16,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.25,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "ficus-elastica",
+      "name": "Rubber Plant",
+      "latin": "Ficus elastica",
+      "aliases": [
+        "Rubber Tree"
+      ],
+      "categories": [
+        "tree-like",
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/ficus_elastica.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 2500,
+          "notes": "bright, indirect"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.6,
+          "notes": "keep slightly moist"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 55
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "growing season"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "ficus-lyrata",
+      "name": "Fiddle Leaf Fig",
+      "latin": "Ficus lyrata",
+      "aliases": [
+        "Fiddle-leaf Fig"
+      ],
+      "categories": [
+        "tree-like",
+        "statement"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/ficus_lyrata.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "high",
+          "lux_min": 1000,
+          "lux_max": 3000,
+          "notes": "very bright, indirect"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.6,
+          "notes": "consistent schedule"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 55
+        },
+        "humidity": {
+          "target_min": 45,
+          "target_max": 65
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 3,
+      "sources": [
+        "starter-pack"
+      ],
+      "notes": "Sensitive to cold drafts & overwatering."
+    },
+    {
+      "id": "spathiphyllum-wallisii",
+      "name": "Peace Lily",
+      "latin": "Spathiphyllum wallisii",
+      "aliases": [
+        "Spathiphyllum"
+      ],
+      "categories": [
+        "flowering",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/peace_lily.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 100,
+          "lux_max": 1000,
+          "notes": "blooms better in brighter light"
+        },
+        "watering": {
+          "level": "frequent",
+          "per_week_min": 0.7,
+          "per_week_max": 1.5,
+          "notes": "keep evenly moist"
+        },
+        "soil_moisture": {
+          "target_min": 45,
+          "target_max": 70
+        },
+        "humidity": {
+          "target_min": 45,
+          "target_max": 70
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "dieffenbachia-seguine",
+      "name": "Dieffenbachia",
+      "latin": "Dieffenbachia seguine",
+      "aliases": [
+        "Dumb Cane"
+      ],
+      "categories": [
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/dieffenbachia.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium",
+          "lux_min": 300,
+          "lux_max": 1500,
+          "notes": "avoid direct sun"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.4,
+          "per_week_max": 0.8,
+          "notes": "keep lightly moist"
+        },
+        "soil_moisture": {
+          "target_min": 35,
+          "target_max": 55
+        },
+        "humidity": {
+          "target_min": 45,
+          "target_max": 65
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "growing season"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "calathea-lancifolia",
+      "name": "Rattlesnake Plant",
+      "latin": "Calathea lancifolia",
+      "aliases": [
+        "Goeppertia insignis"
+      ],
+      "categories": [
+        "prayer-plant",
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/calathea_lancifolia.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium",
+          "lux_min": 200,
+          "lux_max": 1200,
+          "notes": "no direct sun"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.5,
+          "per_week_max": 1.0,
+          "notes": "soft/filtered water preferred"
+        },
+        "soil_moisture": {
+          "target_min": 40,
+          "target_max": 60
+        },
+        "humidity": {
+          "target_min": 55,
+          "target_max": 80
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 3,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "maranta-leuconeura",
+      "name": "Prayer Plant",
+      "latin": "Maranta leuconeura",
+      "aliases": [
+        "Red Prayer Plant"
+      ],
+      "categories": [
+        "prayer-plant",
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/maranta.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 150,
+          "lux_max": 1000,
+          "notes": "avoid direct sun"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.5,
+          "per_week_max": 1.0,
+          "notes": "keep slightly moist"
+        },
+        "soil_moisture": {
+          "target_min": 40,
+          "target_max": 60
+        },
+        "humidity": {
+          "target_min": 55,
+          "target_max": 80
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "dracaena-marginata",
+      "name": "Dragon Tree",
+      "latin": "Dracaena marginata",
+      "aliases": [
+        "Madagascar Dragon Tree"
+      ],
+      "categories": [
+        "tree-like",
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/dracaena_marginata.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium",
+          "lux_min": 300,
+          "lux_max": 2000,
+          "notes": "bright, indirect"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.2,
+          "per_week_max": 0.5,
+          "notes": "dry top 3–4 cm"
+        },
+        "soil_moisture": {
+          "target_min": 25,
+          "target_max": 45
+        },
+        "humidity": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "schefflera-arboricola",
+      "name": "Umbrella Plant",
+      "latin": "Schefflera arboricola",
+      "aliases": [
+        "Dwarf Umbrella Tree"
+      ],
+      "categories": [
+        "tree-like",
+        "foliage"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/schefflera.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 2500,
+          "notes": "bright, indirect"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.7,
+          "notes": "let top dry slightly"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "growing season"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "chlorophytum-comosum",
+      "name": "Spider Plant",
+      "latin": "Chlorophytum comosum",
+      "aliases": [
+        "Airplane Plant"
+      ],
+      "categories": [
+        "beginner",
+        "hanging"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/spider_plant.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 150,
+          "lux_max": 1500,
+          "notes": "tolerant"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.4,
+          "per_week_max": 0.8,
+          "notes": "keep slightly moist"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 55
+        },
+        "humidity": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 16,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "tradescantia-zebrina",
+      "name": "Tradescantia",
+      "latin": "Tradescantia zebrina",
+      "aliases": [
+        "Inch Plant"
+      ],
+      "categories": [
+        "vining",
+        "colorful"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/tradescantia_zebrina.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 400,
+          "lux_max": 2500,
+          "notes": "more light = better color"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.4,
+          "per_week_max": 0.8,
+          "notes": "do not waterlog"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 16,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "philodendron-hederaceum",
+      "name": "Heartleaf Philodendron",
+      "latin": "Philodendron hederaceum",
+      "aliases": [
+        "Philodendron scandens"
+      ],
+      "categories": [
+        "vining",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/philodendron_heartleaf.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 150,
+          "lux_max": 1500,
+          "notes": "bright, indirect ideal"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.7,
+          "notes": "dry top 2–3 cm"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 65
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "hoya-carnosa",
+      "name": "Hoya",
+      "latin": "Hoya carnosa",
+      "aliases": [
+        "Wax Plant"
+      ],
+      "categories": [
+        "vining",
+        "flowering"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/hoya_carnosa.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 2500,
+          "notes": "bright, indirect; some morning sun"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.2,
+          "per_week_max": 0.5,
+          "notes": "dry between waterings"
+        },
+        "soil_moisture": {
+          "target_min": 20,
+          "target_max": 40
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 65
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 2,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "pilea-peperomioides",
+      "name": "Chinese Money Plant",
+      "latin": "Pilea peperomioides",
+      "aliases": [
+        "UFO Plant"
+      ],
+      "categories": [
+        "compact",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/pilea.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium",
+          "lux_min": 300,
+          "lux_max": 2000,
+          "notes": "rotate for even growth"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.7,
+          "notes": "drain well"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 16,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "growing season"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "peperomia-obtusifolia",
+      "name": "Peperomia",
+      "latin": "Peperomia obtusifolia",
+      "aliases": [
+        "Baby Rubber Plant"
+      ],
+      "categories": [
+        "compact",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/peperomia_obtusifolia.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 150,
+          "lux_max": 1200,
+          "notes": "avoid harsh sun"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.2,
+          "per_week_max": 0.5,
+          "notes": "succulent-like leaves"
+        },
+        "soil_moisture": {
+          "target_min": 20,
+          "target_max": 40
+        },
+        "humidity": {
+          "target_min": 35,
+          "target_max": 60
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 27
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.25,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "anthurium-andraeanum",
+      "name": "Anthurium",
+      "latin": "Anthurium andraeanum",
+      "aliases": [
+        "Flamingo Flower"
+      ],
+      "categories": [
+        "flowering",
+        "tropical"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/anthurium.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 2000,
+          "notes": "bright, indirect"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.4,
+          "per_week_max": 0.8,
+          "notes": "aerated mix (orchid bark)"
+        },
+        "soil_moisture": {
+          "target_min": 35,
+          "target_max": 55
+        },
+        "humidity": {
+          "target_min": 50,
+          "target_max": 70
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 3,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "aglaonema-commutatum",
+      "name": "Chinese Evergreen",
+      "latin": "Aglaonema commutatum",
+      "aliases": [
+        "Aglaonema"
+      ],
+      "categories": [
+        "foliage",
+        "beginner"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/aglaonema.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "low-medium",
+          "lux_min": 150,
+          "lux_max": 1200,
+          "notes": "tolerant of shade"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.3,
+          "per_week_max": 0.7,
+          "notes": "allow partial dry"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 40,
+          "target_max": 65
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 29
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.5,
+          "season": "growing season"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "aloe-vera",
+      "name": "Aloe Vera",
+      "latin": "Aloe vera",
+      "aliases": [
+        "Aloe barbadensis miller"
+      ],
+      "categories": [
+        "succulent",
+        "medicinal"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/aloe_vera.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "high",
+          "lux_min": 1000,
+          "lux_max": 4000,
+          "notes": "direct sun ok if acclimated"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.1,
+          "per_week_max": 0.3,
+          "notes": "dry completely between"
+        },
+        "soil_moisture": {
+          "target_min": 10,
+          "target_max": 25
+        },
+        "humidity": {
+          "target_min": 20,
+          "target_max": 50
+        },
+        "temperature_c": {
+          "min": 13,
+          "max": 32
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.25,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "haworthia-fasciata",
+      "name": "Haworthia",
+      "latin": "Haworthia fasciata",
+      "aliases": [
+        "Zebra Haworthia"
+      ],
+      "categories": [
+        "succulent",
+        "compact"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/haworthia.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium-high",
+          "lux_min": 500,
+          "lux_max": 3000,
+          "notes": "bright light"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.1,
+          "per_week_max": 0.3,
+          "notes": "succulent rules"
+        },
+        "soil_moisture": {
+          "target_min": 10,
+          "target_max": 25
+        },
+        "humidity": {
+          "target_min": 20,
+          "target_max": 50
+        },
+        "temperature_c": {
+          "min": 15,
+          "max": 30
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.25,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "mammillaria-sp",
+      "name": "Cactus (Mammillaria)",
+      "latin": "Mammillaria sp.",
+      "aliases": [
+        "Pincushion Cactus"
+      ],
+      "categories": [
+        "cactus",
+        "succulent"
+      ],
+      "toxicity": {
+        "to_pets": false,
+        "to_humans": false
+      },
+      "images": {
+        "primary": "https://example.com/images/mammillaria.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "high",
+          "lux_min": 1500,
+          "lux_max": 6000,
+          "notes": "full sun preferred"
+        },
+        "watering": {
+          "level": "minimum",
+          "per_week_min": 0.05,
+          "per_week_max": 0.2,
+          "notes": "sparse in winter"
+        },
+        "soil_moisture": {
+          "target_min": 5,
+          "target_max": 20
+        },
+        "humidity": {
+          "target_min": 20,
+          "target_max": 40
+        },
+        "temperature_c": {
+          "min": 10,
+          "max": 35
+        },
+        "fertilizer": {
+          "frequency_per_month": 0.2,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 1,
+      "sources": [
+        "starter-pack"
+      ]
+    },
+    {
+      "id": "begonia-rex",
+      "name": "Rex Begonia",
+      "latin": "Begonia rex",
+      "aliases": [
+        "Painted-leaf Begonia"
+      ],
+      "categories": [
+        "foliage",
+        "colorful"
+      ],
+      "toxicity": {
+        "to_pets": true,
+        "to_humans": true
+      },
+      "images": {
+        "primary": "https://example.com/images/begonia_rex.jpg",
+        "gallery": []
+      },
+      "care": {
+        "light": {
+          "level": "medium",
+          "lux_min": 300,
+          "lux_max": 1200,
+          "notes": "avoid direct sun"
+        },
+        "watering": {
+          "level": "average",
+          "per_week_min": 0.4,
+          "per_week_max": 0.8,
+          "notes": "likes humidity, not wet soil"
+        },
+        "soil_moisture": {
+          "target_min": 30,
+          "target_max": 50
+        },
+        "humidity": {
+          "target_min": 50,
+          "target_max": 70
+        },
+        "temperature_c": {
+          "min": 18,
+          "max": 26
+        },
+        "fertilizer": {
+          "frequency_per_month": 1,
+          "season": "spring-summer"
+        }
+      },
+      "difficulty": 3,
+      "sources": [
+        "starter-pack"
+      ]
+    }
+  ]
+}

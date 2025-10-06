@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { usePlantSearch, useDebounce } from '../../../hooks/usePlantSearch';
-import type { PlantFilters, LightLevel, TimeCommitment, ExperienceLevel } from '../../../types/plant';
-import { LIGHT_OPTIONS as lightOptions, TIME_OPTIONS as timeOptions, EXPERIENCE_OPTIONS as experienceOptions } from '../../../types/plant';
+import type { PlantFilters, LightLevel, TimeCommitment } from '../../../types/plant';
+import { LIGHT_OPTIONS as lightOptions, TIME_OPTIONS as timeOptions } from '../../../types/plant';
 import PlantFilterControl from '../../shared/PlantFilterControl';
 import PlantCard from '../../shared/PlantCard';
 import CareModal from '../../shared/CareModal';
@@ -9,7 +9,7 @@ import './PlantFinder.css';
 
 export default function PlantFinder() {
   const { plants, loading, error, search, getPlantDetails } = usePlantSearch();
-  const [selectedPlantId, setSelectedPlantId] = useState<number | null>(null);
+  const [selectedPlantId, setSelectedPlantId] = useState<string | null>(null);
 
   // Initially no filters - show all plants
   const [filters, setFilters] = useState<PlantFilters>({});
@@ -34,7 +34,7 @@ export default function PlantFinder() {
       // Otherwise, set the filter
       return {
         ...prev,
-        [key]: value as LightLevel | TimeCommitment | ExperienceLevel
+        [key]: value as LightLevel | TimeCommitment
       };
     });
   };
@@ -62,14 +62,6 @@ export default function PlantFinder() {
             value={filters.time || ''}
             onChange={(value) => handleFilterChange('time', value as TimeCommitment)}
             ariaLabel="Select time commitment level"
-          />
-
-          <PlantFilterControl
-            label="What's your experience level?"
-            options={experienceOptions}
-            value={filters.experience || ''}
-            onChange={(value) => handleFilterChange('experience', value as ExperienceLevel)}
-            ariaLabel="Select your experience level"
           />
         </div>
 

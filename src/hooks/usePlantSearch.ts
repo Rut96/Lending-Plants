@@ -1,45 +1,29 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { plantApiService } from '../services/plantApi';
+import { unifiedPlantApiService } from '../services/unifiedPlantApi';
 import type {
-  PlantSpecies,
-  PlantDetailsResponse,
   PlantFilters,
-  FilterMappings,
   ExperienceLevel,
 } from '../types/plant';
-
-// Filter mappings
-const FILTER_MAPPINGS: FilterMappings = {
-  light: {
-    low: ['full_shade', 'part_shade'],
-    medium: ['sun-part_shade', 'part_shade'],
-    high: ['full_sun'],
-  },
-  time: {
-    low: ['minimum', 'none'],
-    medium: ['average'],
-    high: ['frequent'],
-  },
-};
+import type { UnifiedPlant } from '../types/trefle';
 
 interface UseePlantSearchResult {
-  plants: PlantSpecies[];
+  plants: UnifiedPlant[];
   loading: boolean;
   error: string | null;
   search: (filters: PlantFilters) => Promise<void>;
-  getPlantDetails: (id: number) => Promise<PlantDetailsResponse | null>;
+  getPlantDetails: (id: string) => Promise<UnifiedPlant | null>;
 }
 
 export function usePlantSearch(): UseePlantSearchResult {
-  const [plants, setPlants] = useState<PlantSpecies[]>([]);
+  const [plants, setPlants] = useState<UnifiedPlant[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Cache for plant details
-  const detailsCache = useMemo(() => new Map<number, PlantDetailsResponse>(), []);
+  const detailsCache = useMemo(() => new Map<string, UnifiedPlant>(), []);
 
   const applyExperienceFilter = useCallback(
-    (plants: PlantSpecies[], experience?: ExperienceLevel): PlantSpecies[] => {
+    (plants: UnifiedPlant[], experience?: ExperienceLevel): UnifiedPlant[] => {
       // If no experience filter, return all plants
       if (!experience) {
         return plants;
@@ -69,9 +53,8 @@ export function usePlantSearch(): UseePlantSearchResult {
       setError(null);
 
       try {
-        // Call API service with light and time filters
-        // (API handles sunlight and watering parameters)
-        const results = await plantApiService.searchPlants(filters);
+        // Call unified API service to get plants from both Perenual and Trefle
+        const results = await unifiedPlantApiService.searchPlants(filters);
 
         // Apply client-side experience level filtering
         const filteredPlants = applyExperienceFilter(results, filters.experience);
@@ -89,17 +72,19 @@ export function usePlantSearch(): UseePlantSearchResult {
   );
 
   const getPlantDetails = useCallback(
-    async (id: number): Promise<PlantDetailsResponse | null> => {
+    async (id: string): Promise<UnifiedPlant | null> => {
       // Check cache first
       if (detailsCache.has(id)) {
         return detailsCache.get(id)!;
       }
 
       try {
-        const details = await plantApiService.getPlantDetails(id);
+        const details = await unifiedPlantApiService.getPlantDetails(id);
 
         // Cache the result
-        detailsCache.set(id, details);
+        if (details) {
+          detailsCache.set(id, details);
+        }
 
         return details;
       } catch (err) {

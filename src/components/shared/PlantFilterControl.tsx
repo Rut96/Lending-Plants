@@ -45,8 +45,10 @@ export default function PlantFilterControl({
             onClick={() => handleClick(option.value)}
           >
             <span className="plant-filter-emoji">{option.emoji}</span>
-            <span className="plant-filter-option-label">{option.label}</span>
-            <span className="plant-filter-option-desc">{option.description}</span>
+            <div className="plant-filter-option-content">
+              <span className="plant-filter-option-label">{option.label}</span>
+              <span className="plant-filter-option-desc">{option.description}</span>
+            </div>
           </button>
         ))}
       </div>

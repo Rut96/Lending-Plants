@@ -77,6 +77,33 @@
   color: var(--color-surface);
 }
 
+.modal-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.modal-plant-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-base);
+}
+
+.modal-plant-image:hover {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-plant-image:hover {
+    transform: none;
+  }
+}
+
 .modal-header {
   margin-bottom: var(--spacing-2xl);
   padding-right: var(--spacing-3xl);

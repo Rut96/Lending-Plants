@@ -60,7 +60,7 @@
 .plant-finder-separator {
   width: 200px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   align-self: stretch;
   overflow: visible;
@@ -68,8 +68,8 @@
 
 .plant-finder-separator img {
     width: auto;
-    height: 120%;
-    object-fit: contain;
+    height: 90%;
+    object-fit: cover;
 }
 
 /* Responsive */

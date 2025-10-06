@@ -2,3 +2,13 @@
   min-height: 100vh;
   padding-top: var(--spacing-2xl);
 }
+
+.plant-cards-section {
+  padding: var(--spacing-4xl) 0;
+}
+
+@media (max-width: 768px) {
+  .plant-cards-section {
+    padding: var(--spacing-3xl) 0;
+  }
+}

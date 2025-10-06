@@ -1,46 +1,38 @@
-import { useState, useEffect } from 'react';
-import { usePlantSearch, useDebounce } from '../../../hooks/usePlantSearch';
+import { useState } from 'react';
 import type { PlantFilters, LightLevel, TimeCommitment } from '../../../types/plant';
 import { LIGHT_OPTIONS as lightOptions, TIME_OPTIONS as timeOptions } from '../../../types/plant';
 import PlantFilterControl from '../../shared/PlantFilterControl';
-import PlantCard from '../../shared/PlantCard';
-import CareModal from '../../shared/CareModal';
+import vineImage from '../../../assets/images/vine.png';
 import './PlantFinder.css';
 
-export default function PlantFinder() {
-  const { plants, loading, error, search, getPlantDetails } = usePlantSearch();
-  const [selectedPlantId, setSelectedPlantId] = useState<string | null>(null);
+interface PlantFinderProps {
+  onFilterChange: (filters: PlantFilters) => void;
+}
 
-  // Initially no filters - show all plants
+export default function PlantFinder({ onFilterChange }: PlantFinderProps) {
   const [filters, setFilters] = useState<PlantFilters>({});
 
-  // Debounce filter changes to reduce API calls
-  const debouncedFilters = useDebounce(filters, 300);
-
-  // Load plants on initial mount and when filters change
-  useEffect(() => {
-    search(debouncedFilters);
-  }, [debouncedFilters, search]);
-
   const handleFilterChange = (key: keyof PlantFilters, value: string) => {
-    setFilters((prev) => {
-      // If value is empty, remove the filter
-      if (!value) {
-        const newFilters = { ...prev };
-        delete newFilters[key];
-        return newFilters;
-      }
+    const newFilters: PlantFilters = { ...filters };
 
+    // If value is empty, remove the filter
+    if (!value) {
+      delete newFilters[key];
+    } else {
       // Otherwise, set the filter
-      return {
-        ...prev,
-        [key]: value as LightLevel | TimeCommitment
-      };
-    });
+      if (key === 'light') {
+        newFilters.light = value as LightLevel;
+      } else if (key === 'time') {
+        newFilters.time = value as TimeCommitment;
+      }
+    }
+
+    setFilters(newFilters);
+    onFilterChange(newFilters);
   };
 
   return (
-    <section id="plant-finder" className="plant-finder-section">
+    <section className="plant-finder-section">
       <div className="container">
         <div className="plant-finder-header">
           <h2>Find Your Perfect Plant</h2>
@@ -56,6 +48,10 @@ export default function PlantFinder() {
             ariaLabel="Select light conditions"
           />
 
+          <div className="plant-finder-separator">
+            <img src={vineImage} alt="" aria-hidden="true" />
+          </div>
+
           <PlantFilterControl
             label="How much time can you dedicate?"
             options={timeOptions}
@@ -64,49 +60,7 @@ export default function PlantFinder() {
             ariaLabel="Select time commitment level"
           />
         </div>
-
-        {error && (
-          <div className="plant-finder-error" role="alert">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 8v4M12 16h.01" />
-            </svg>
-            <p>{error}</p>
-          </div>
-        )}
-
-        {loading ? (
-          <div className="plant-finder-loading">
-            <div className="spinner-large"></div>
-            <p>Finding your perfect plants...</p>
-          </div>
-        ) : plants.length > 0 ? (
-          <div className="plant-grid">
-            {plants.map((plant) => (
-              <PlantCard
-                key={plant.id}
-                plant={plant}
-                onViewCare={setSelectedPlantId}
-              />
-            ))}
-          </div>
-        ) : !error ? (
-          <div className="plant-finder-empty">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M12 2L2 7l10 5 10-5-10-5z" />
-              <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-            <h3>No plants found</h3>
-            <p>Try adjusting your filters to see more results</p>
-          </div>
-        ) : null}
       </div>
-
-      <CareModal
-        plantId={selectedPlantId}
-        onClose={() => setSelectedPlantId(null)}
-        getPlantDetails={getPlantDetails}
-      />
     </section>
   );
 }
